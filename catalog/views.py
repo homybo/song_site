@@ -14,13 +14,21 @@ from django.conf import settings
 
 
 
-p = open(os.path.join(settings.BASE_DIR, 'poem.json'),encoding='UTF-8')
+
+fp = open("poem.json", "r", encoding="utf-8")
+rawdata = fp.read()
+fp.close()
+
+data = json.loads(rawdata)
+print("詩名：", data[0]['title'])
+print("作者：", data[0]['author'])
+print("內容：", "".join(data[0]['paragraphs']))
 
 # Create your views here.
 def home(request):
     
     context={
-        'poems':p
+        'poems':data
     }
 
     return render(request,'blog/home.html',context)
