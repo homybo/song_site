@@ -30,4 +30,4 @@ def showall(request):
 
 def show(request, id):
     target = Poem.objects.get(id=id)
-    return render(request, "show.html", locals())
+    return render(request, "blog/show.html", locals())
