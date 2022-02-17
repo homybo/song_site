@@ -15,18 +15,6 @@ import random
 
 
 
-fp = open("poem.json", "r", encoding="utf-8")
-rawdata = fp.read()
-fp.close()
-
-data = json.loads(rawdata)
-a=random.randint(0,1000)
-print("詩名：", data[a]['title'])
-print("作者：", data[a]['author'])
-print("內容：", "".join(data[a]['paragraphs']))
-random.randint(5,1004)
-
-
 # Create your views here.
 def home(request):
 
