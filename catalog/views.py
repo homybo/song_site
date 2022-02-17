@@ -11,7 +11,7 @@ from django.http import HttpResponse
 from django.template import context  
 from catalog.models import poem
 from django.conf import settings
-
+import random
 
 
 
@@ -20,18 +20,28 @@ rawdata = fp.read()
 fp.close()
 
 data = json.loads(rawdata)
-print("詩名：", data[0]['title'])
-print("作者：", data[0]['author'])
-print("內容：", "".join(data[0]['paragraphs']))
+a=random.randint(0,1000)
+print("詩名：", data[a]['title'])
+print("作者：", data[a]['author'])
+print("內容：", "".join(data[a]['paragraphs']))
+random.randint(5,1004)
+
 
 # Create your views here.
 def home(request):
-    
+
+    a=random.randint(4,1003)
+    b=a+1
+    poem_list=poem.objects.all()[a:b]
     context={
-        'poems':data
+        'poem_list':poem_list
     }
 
     return render(request,'blog/home.html',context)
 
 def about(request):
     return render(request,'blog/about.html',{'title':'About'})
+
+def poem_detail(request, pk):
+    post = poem.objects.get(pk=pk)
+    return render(request, 'post.html', {'post': post})
