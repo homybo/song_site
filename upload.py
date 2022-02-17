@@ -1,9 +1,11 @@
 import json
 import os
 import django
-from catalog.models import poem
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'song_site.settings')
 django.setup()
+
+from catalog.models import poem
 
 fp = open("poem.json", "r", encoding="utf-8")
 rawdata = fp.read()
@@ -11,8 +13,14 @@ fp.close()
 
 data = json.loads(rawdata)
 
-poems = rawdata.objects.all()
-print(poems[:10])
+
+
+for i in range(len(data)):
+    {poem.objects.create(title=data[i]['title'] ,author=data[i]['author'] ,paragraphs=''.join(data[i]['paragraphs']))}
+
+
+
+
 
 
 #print("詩名：", data[0]['title'])
