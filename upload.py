@@ -5,7 +5,7 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'song_site.settings')
 django.setup()
 
-from catalog.models import poem
+from catalog.models import Poem
 
 fp = open("poem.json", "r", encoding="utf-8")
 rawdata = fp.read()
@@ -13,7 +13,11 @@ fp.close()
 
 data = json.loads(rawdata)
 
-for i in range(len(data)):
-    {poem.objects.create(title=data[i]['title'] ,author=data[i]['author'] ,paragraphs=''.join(data[i]['paragraphs']))}
-
+for p in data:
+    target = Poem()
+    target.title = p['title']
+    target.author = p['author']
+    target.paragraphs = "".join(p['paragraphs'])
+    target.save()
+    print(target.title)
 

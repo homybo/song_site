@@ -9,7 +9,7 @@ from turtle import title
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import context  
-from catalog.models import poem
+from catalog.models import Poem
 from django.conf import settings
 import random
 
@@ -17,19 +17,17 @@ import random
 
 # Create your views here.
 def home(request):
-
-    a=random.randint(4,1003)
-    b=a+1
-    poem_list=poem.objects.all()[a:b]
-    context={
-        'poem_list':poem_list
-    }
-
-    return render(request,'blog/home.html',context)
+    poem=Poem.objects.all()
+    target = random.choice(poem)
+    return render(request,'blog/home.html',locals())
 
 def about(request):
-    return render(request,'blog/about.html',{'title':'About'})
+    return render(request,'blog/about.html',locals())
 
-def poem_detail(request, pk):
-    post = poem.objects.get(pk=pk)
-    return render(request, 'post.html', {'post': post})
+def showall(request):
+    poem = Poem.objects.all()[:20]
+    return render(request, "blog/showall.html", locals())
+
+def show(request, id):
+    target = Poem.objects.get(id=id)
+    return render(request, "show.html", locals())

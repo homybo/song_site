@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+{%block content%}
+
+<table border="1">
+    <tr><td>詩名</td><td>作者</td></tr>
+    {% for p in poem %}
+    <tr>
+    <td><a href="/show/{{p.id}}/">{{ p.title }}</a></td><td>{{p.author}}</td>
+    </tr>
+    {% endfor %}  
+</table>
+{%endblock content%}

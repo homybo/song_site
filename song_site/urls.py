@@ -21,7 +21,7 @@ from catalog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home), 
-    path('home',views.home),
-    path('about',views.about,),
-    path(r'^post/(?P<pk>\d+)/$',views.poem_detail, name='post'),
+    path('about/',views.about,),
+    path('showall/', views.showall),
+    path('show/<int:id>/', views.show),
 ]
