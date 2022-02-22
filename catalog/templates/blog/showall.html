@@ -1,12 +1,44 @@
 {% extends "blog/base.html" %}
 {%block content%}
 
-<table border="1">
-    <tr><td>詩名</td><td>作者</td></tr>
-    {% for p in poem %}
-    <tr>
-    <td><a href="/show/{{p.id}}/">{{ p.title }}</a></td><td>{{p.author}}</td>
-    </tr>
+
+
+
+
+
+<table class="table table-striped ">
+    <thead>
+      <tr>
+        <th class="col-10">詩名</th>
+        <th class="col-2">作者</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for p in Poem_All %}
+      <tr>
+        <td><a href="/show/{{p.id}}/">{{ p.title }}</a></td>
+        <td>{{p.author}}</td>
+      </tr>
     {% endfor %}  
+    </tbody>
 </table>
+
+<nav class="flexbox mt-30"> 
+    <a href="?page=1" class="btn btn-white"><i class="ti-arrow-left fs-9 mr-4"></i>第一頁</a> 
+    {% if Poem_All.has_previous %} 
+    <a href="?page={{Poem_All.previous_page_number}}" class="btn btn-white"><i class="ti-arrow-left fs-9 mr-4"></i>上一頁</a> 
+    {% else %} 
+    <a href="#" class="btn btn-white disabled"><i class="ti-arrow-left fs-9 mr-4"></i>上一頁</a> 
+    {% endif %} 
+ 
+    {% if Poem_All.has_next %} 
+    <a href="?page={{Poem_All.next_page_number}}" class="btn btn-white"><i class="ti-arrow-right fs-9 mr-4"></i>下一頁</a> 
+    {% else %} 
+    <a href="#" class="btn btn-white disabled"><i class="ti-arrow-right fs-9 mr-4"></i>下一頁</a> 
+    {% endif %} 
+</nav> 
+
+
+
+
 {%endblock content%}

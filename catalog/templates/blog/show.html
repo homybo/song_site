@@ -1,9 +1,13 @@
 {% extends "blog/base.html" %}
 {%block content%}
-
+<input type=button value="回到上一頁" onClick="javascript:history.go(-1);" style="width:120px;height:40px;border:2px none;">
+<br>
+<br>
     <div>
     <h1>詩名：{{ target.title }}</h1>
     <h2>作者：{{ target.author }}</h2>
-    <h3>{{ target.paragraphs }}</h3>
+    <hr>
+    <h3>{{target.paragraphs }}</h3>
     </div>
+
 {%endblock content%}

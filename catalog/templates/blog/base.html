@@ -13,9 +13,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
 
     {%if title %}
-        <title>Django Blog -{{title}} </title>
+        <title>宋詩 -{{title}} </title>
     {%else%}
-        <title>Django Blog</title>
+        <title>宋詩</title>
     {%endif%}
 
 </head>
@@ -38,11 +38,8 @@
       </header>
       <main role="main" class="container">
         <div class="row">
-          <div class="col-md-8">
+          <div class>
             {% block content %}{% endblock %}
-          </div>
-          <div class="col-md-4">
-            
           </div>
         </div>
         <hr>
