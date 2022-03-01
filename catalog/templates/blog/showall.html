@@ -2,8 +2,15 @@
 {%block content%}
 
 
+<form class="d-flex" method="POST" action="{% url 'search' %}">
 
+  {%csrf_token %}
+  <input class="form-control me-2" type="search" placeholder="輸入關鍵字" aria-label="輸入關鍵字" name="searched">
+  <button class="btn btn-outline-secondary" type="submit">
+  搜尋
+  </button>
 
+</form>
 
 
 <table class="table table-striped ">
@@ -30,12 +37,13 @@
     {% else %} 
     <a href="#" class="btn btn-white disabled"><i class="ti-arrow-left fs-9 mr-4"></i>上一頁</a> 
     {% endif %} 
- 
+    {{ page }}
     {% if Poem_All.has_next %} 
     <a href="?page={{Poem_All.next_page_number}}" class="btn btn-white"><i class="ti-arrow-right fs-9 mr-4"></i>下一頁</a> 
     {% else %} 
     <a href="#" class="btn btn-white disabled"><i class="ti-arrow-right fs-9 mr-4"></i>下一頁</a> 
     {% endif %} 
+    <a href="?page={{Poem_All.paginator.num_pages}}" class="btn btn-white"><i class="ti-arrow-left fs-9 mr-4"></i>最尾頁</a> 
 </nav> 
 
 

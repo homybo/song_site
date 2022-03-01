@@ -24,4 +24,5 @@ urlpatterns = [
     path('about/',views.about,),
     path('showall/', views.showall),
     path('show/<int:id>/', views.show),
+    path('search/', views.search,name='search'),
 ]

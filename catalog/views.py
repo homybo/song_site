@@ -1,11 +1,15 @@
+from ast import keyword
 from encodings import utf_8, utf_8_sig
 import imp
 import os
 import json 
 from importlib.resources import contents
 from sys import modules
+from this import d
 from tokenize import Ignore
 from turtle import title
+from unicodedata import name
+from webbrowser import get
 from django.shortcuts import render
 from catalog.models import Poem
 from django.conf import settings
@@ -35,3 +39,9 @@ def showall(request):
 def show(request, id):
     target = Poem.objects.get(id=id)
     return render(request, "blog/show.html", locals())
+
+def search(request):
+    if request.method=="POST":  
+        searched= request.POST.get('searched')
+        results=Poem.objects.filter(title__contains=searched)
+        return render(request,"blog/results.html",locals())
