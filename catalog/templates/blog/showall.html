@@ -5,10 +5,9 @@
 <form class="d-flex" method="POST" action="{% url 'search' %}">
 
   {%csrf_token %}
-  <input class="form-control me-2" type="search" placeholder="輸入關鍵字" aria-label="輸入關鍵字" name="searched">
-  <button class="btn btn-outline-secondary" type="submit">
-  搜尋
-  </button>
+  <input class="form-control me-2" type="search" placeholder="輸入標題" aria-label="輸入標題" name="search_title">
+  <input class="form-control me-2" type="search" placeholder="輸入作者名" aria-label="輸入作者名" name="search_author">
+  <button class="btn btn-outline-secondary" type="submit">搜尋</button>
 
 </form>
 

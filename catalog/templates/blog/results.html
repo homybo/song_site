@@ -3,8 +3,8 @@
 <input type=button value="回到上一頁" onClick="javascript:history.go(-1);" style="width:120px;height:40px;border:2px none;">
 <br>
 <br>
-{% if searched %}
-    關鍵字：{{searched}}
+{% if search_title %}
+    關鍵字：{{search_title}}
     <table class="table table-striped ">
     <thead>
         <tr>
@@ -12,14 +12,31 @@
          </tr>
         </thead>
         <tbody>
-        {% for result in results %}
+        {% for result in results_title %}
         <tr>
             <td><a href="/show/{{result.id}}/">{{result}}</a><br></td>
         </tr>
         {% endfor %}  
         </tbody>
     </table>
-{%else%}
-    <h1>呃...看來你忘了打關鍵字喔</h1>
+{%endif%}
+{% if search_author %}
+    關鍵字：{{search_author}}
+    <table class="table table-striped ">
+    <thead>
+        <tr>
+            <th class="col-8">詩名</th>
+            <th class="col-2">作者</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for result in results_author %}
+        <tr>
+            <td><a href="/show/{{result.id}}/">{{result}}</a><br></td>
+            <td>{{result.author}}</td>
+        </tr>
+        {% endfor %}  
+        </tbody>
+    </table>
 {%endif%}
 {%endblock content%}

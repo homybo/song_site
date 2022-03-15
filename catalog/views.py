@@ -42,6 +42,8 @@ def show(request, id):
 
 def search(request):
     if request.method=="POST":  
-        searched= request.POST.get('searched')
-        results=Poem.objects.filter(title__contains=searched)
+        search_title= request.POST.get('search_title')
+        search_author= request.POST.get('search_author')
+        results_title=Poem.objects.filter(title__contains=search_title)
+        results_author=Poem.objects.filter(author__contains=search_author)
         return render(request,"blog/results.html",locals())
