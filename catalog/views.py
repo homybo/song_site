@@ -1,8 +1,3 @@
-from ast import keyword
-from encodings import utf_8, utf_8_sig
-import imp
-import os
-import json 
 from importlib.resources import contents
 from unicodedata import name
 from django.shortcuts import render
